@@ -7,3 +7,9 @@
   height: 100vh;
   gap: 1rem;
 }
+
+.box {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid;
+}
