@@ -1,5 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import AddressForm from "./components/form/AddressForm";
 
 export default function App() {
-  return <div>App</div>;
+  const [isDialog, setIsDialog] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setIsDialog(true)}>open Dialog</button>
+      <AddressForm isDialog={isDialog} />
+    </div>
+  );
 }
