@@ -1,4 +1,4 @@
-.app {
+/* .app {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,10 +6,4 @@
   width: 100vw;
   height: 100vh;
   gap: 1rem;
-}
-
-.box {
-  width: 2rem;
-  height: 2rem;
-  border: 2px solid;
-}
+} */
