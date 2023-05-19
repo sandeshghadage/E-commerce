@@ -27,7 +27,7 @@ export default function AddressForm({ isDialog }) {
       onClose={isDialog}
       PaperProps={{
         style: {
-          minHeight: "85%",
+          minHeight: "88%",
           minWidth: "50%",
           borderRadius: "10px",
         },
