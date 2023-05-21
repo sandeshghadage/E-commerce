@@ -31,7 +31,6 @@ export default function SelectAddress() {
           </Typography>
         </Card>
       </Box>
-      <div>Remove me</div>
     </>
   );
 }
