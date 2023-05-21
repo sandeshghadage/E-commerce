@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function AdditionalInfo() {
-  return <div>AdditionalInfo</div>;
+  return (
+    <>
+      <Typography variant="h6">Fill additional information</Typography>
+    </>
+  );
 }

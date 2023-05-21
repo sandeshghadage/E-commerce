@@ -1,6 +1,5 @@
 import { Box, Button, Card, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import { colors } from "../../../styles/styles";
 import LensOutlinedIcon from "@mui/icons-material/LensOutlined";
 import AdjustOutlinedIcon from "@mui/icons-material/AdjustOutlined";
@@ -27,12 +26,12 @@ export default function SelectAddress() {
           }}
         >
           <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            {" "}
             <AddOutlinedIcon />
             Add new address
           </Typography>
         </Card>
       </Box>
+      <div>Remove me</div>
     </>
   );
 }
