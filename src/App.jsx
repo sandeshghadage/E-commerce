@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import AddressForm from "./components/form/AddressForm";
-import AddressCard from "./components/cards/AddressCard";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Bag from "./pages/bag/Bag";
 
 export default function App() {
-  const [isDialog, setIsDialog] = useState(false);
   return (
-    <div className="app">
-      <button onClick={() => setIsDialog(true)}>open Dialog</button>
-      <AddressForm isDialog={isDialog} />
-      <AddressCard />
+    <div>
+      {/* dummy navbar */}
+      <div style={{ width: "100vw", height: "10vh" }}></div>
+      <Routes>
+        <Route path="/bag" element={<Bag />}></Route>
+      </Routes>
     </div>
   );
 }
