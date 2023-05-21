@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Bag from "./pages/Bag";
+import Bag from "./pages/bag/Bag";
 
 export default function App() {
   return (
