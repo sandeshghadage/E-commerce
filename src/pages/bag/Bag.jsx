@@ -145,12 +145,14 @@ export default function Bag() {
                 ₹5 saved so far on this order
               </Typography>
             </Stack>
-            <Button
-              onClick={() => setComponentCount(componentCount + 1)}
-              variant="outlined"
-            >
-              Continue
-            </Button>
+            {componentCount < 4 && (
+              <Button
+                onClick={() => setComponentCount(componentCount + 1)}
+                variant="outlined"
+              >
+                Continue
+              </Button>
+            )}
           </Stack>
         </Box>
       </Box>
