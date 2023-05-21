@@ -1,5 +1,5 @@
 import React from "react";
-import BagItemCard from "../../components/cards/BagItemCard";
+import BagItemCard from "../../../components/cards/BagItemCard";
 import { Stack, Typography } from "@mui/material";
 
 export default function Cart() {

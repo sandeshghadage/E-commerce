@@ -1,11 +1,16 @@
 import { Box, Container, Typography, Stack, Button } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import React from "react";
-import Cart from "./Cart";
+import React, { useState } from "react";
+import Cart from "./localComponents/Cart";
 import { TbDiscount2 } from "react-icons/tb";
 import { colors } from "../../styles/styles";
+import SelectAddress from "./localComponents/SelectAddress";
+import AdditionalInfo from "./localComponents/AdditionalInfo";
+import ChoosePayment from "./localComponents/ChoosePayment";
 
 export default function Bag() {
+  const [componentCount, setComponentCount] = useState(1);
+  console.log("count =", componentCount);
   return (
     <Container sx={{ display: "flex", gap: "1.5rem", height: "60vh", mt: 5 }}>
       <Box
@@ -16,7 +21,20 @@ export default function Bag() {
           gap: 2,
         }}
       >
-        <Cart />
+        {(() => {
+          switch (componentCount) {
+            case 1:
+              return <Cart />;
+            case 2:
+              return <SelectAddress />;
+            case 3:
+              return <AdditionalInfo />;
+            case 4:
+              return <ChoosePayment />;
+            default:
+              return null;
+          }
+        })()}
       </Box>
       {/* -----right column------- */}
       <Box
@@ -38,6 +56,7 @@ export default function Bag() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            cursor: "pointer",
           }}
         >
           <Stack
@@ -126,7 +145,12 @@ export default function Bag() {
                 ₹5 saved so far on this order
               </Typography>
             </Stack>
-            <Button variant="outlined">Continue</Button>
+            <Button
+              onClick={() => setComponentCount(componentCount + 1)}
+              variant="outlined"
+            >
+              Continue
+            </Button>
           </Stack>
         </Box>
       </Box>
