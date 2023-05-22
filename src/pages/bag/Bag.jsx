@@ -7,12 +7,13 @@ import { colors } from "../../styles/styles";
 import SelectAddress from "./localComponents/SelectAddress";
 import AdditionalInfo from "./localComponents/AdditionalInfo";
 import ChoosePayment from "./localComponents/ChoosePayment";
+import ButtonStandardFilled from "../../components/buttons/ButtonStandardFilled";
 
 export default function Bag() {
   const [componentCount, setComponentCount] = useState(1);
   console.log("count =", componentCount);
   return (
-    <Container sx={{ display: "flex", gap: "1.5rem", height: "60vh", mt: 5 }}>
+    <Container sx={{ display: "flex", gap: "1.5rem", mt: 5 }}>
       <Box
         sx={{
           width: "66.6%",
@@ -94,7 +95,13 @@ export default function Bag() {
           borderRadius={"8px"}
         >
           <Stack
-            sx={{ m: 3, display: "flex", flexDirection: "column", gap: "4px" }}
+            sx={{
+              m: 3,
+              mb: 2,
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+            }}
           >
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Typography variant="body1">Item total</Typography>
@@ -146,12 +153,12 @@ export default function Bag() {
               </Typography>
             </Stack>
             {componentCount < 4 && (
-              <Button
+              <ButtonStandardFilled
+                height={"3rem"}
+                width={"100%"}
+                value={"Continue"}
                 onClick={() => setComponentCount(componentCount + 1)}
-                variant="outlined"
-              >
-                Continue
-              </Button>
+              />
             )}
           </Stack>
         </Box>
