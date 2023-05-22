@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { colors } from "../../../styles/styles";
 import PaymentIcon from "@mui/icons-material/Payment";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import ButtonStandardFilled from "../../../components/buttons/ButtonStandardFilled";
 
 export default function ChoosePayment() {
   const [selectedMethod, setSelectedMethod] = useState("Online payment");
@@ -172,7 +173,19 @@ export default function ChoosePayment() {
                 </Typography>
               </Stack>
             )}
-            <Button variant="outlined">pay</Button>
+            {selectedMethod === "Online payment" ? (
+              <ButtonStandardFilled
+                height={"3rem"}
+                width={"100%"}
+                value={"Pay 565"}
+              />
+            ) : (
+              <ButtonStandardFilled
+                height={"3rem"}
+                width={"100%"}
+                value={"Place Order"}
+              />
+            )}
           </Box>
         </Box>
       </Box>
