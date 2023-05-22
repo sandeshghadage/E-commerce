@@ -1,11 +1,181 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { colors } from "../../../styles/styles";
+import PaymentIcon from "@mui/icons-material/Payment";
+import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 
 export default function ChoosePayment() {
+  const [selectedMethod, setSelectedMethod] = useState("Online payment");
+
+  function handleSelectOnlinePaymentMethod() {
+    setSelectedMethod("Online payment");
+  }
+  function handleSelectCashPaymentMethod() {
+    setSelectedMethod("Cash on delivery");
+  }
+
   return (
     <>
       <Typography variant="h6">Choose payment mode</Typography>
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: "1.5rem" }}></Box>
+      <Box
+        sx={{
+          display: "flex",
+          width: "100%",
+          height: "13rem",
+          border: "1px solid #eaeaea",
+          borderRadius: 2,
+        }}
+      >
+        <Box sx={{ width: "40%", height: "100%" }}>
+          <Stack
+            onClick={handleSelectOnlinePaymentMethod}
+            sx={{
+              height: "33.3%",
+              width: "100%",
+              borderBottom: "1px solid #eaeaea",
+              borderRight: "1px solid #eaeaea",
+              // borderLeft:
+              //   selectedMethod === "Online payment"
+              //     ? "2px solid #073642"
+              //     : "1px solid #eaeaea",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              backgroundColor:
+                selectedMethod === "Online payment" ? "#fff" : "#fafafa",
+            }}
+          >
+            {selectedMethod === "Online payment" && (
+              <Stack
+                sx={{
+                  width: "3px",
+                  height: "100%",
+                  backgroundColor: colors.primary,
+                  borderTopLeftRadius: 3,
+                }}
+              />
+            )}
+            <Stack direction={"row"} gap={1} sx={{ marginLeft: 2 }}>
+              <PaymentIcon sx={{ color: colors.primary }} />
+              <Typography
+                sx={{ fontWeight: "600", color: colors.primary }}
+                variant="body1"
+              >
+                Online payment
+              </Typography>
+            </Stack>
+          </Stack>
+          <Stack
+            onClick={handleSelectCashPaymentMethod}
+            sx={{
+              height: "33.3%",
+              width: "100%",
+              borderBottom: "1px solid #eaeaea",
+              borderRight: "1px solid #eaeaea",
+              // borderLeft:
+              //   selectedMethod === "Cash on delivery"
+              //     ? "2px solid #073642"
+              //     : "1px solid #eaeaea",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              backgroundColor:
+                selectedMethod === "Cash on delivery" ? "#fff" : "#fafafa",
+            }}
+          >
+            {selectedMethod === "Cash on delivery" && (
+              <Stack
+                sx={{
+                  width: "3px",
+                  height: "100%",
+                  backgroundColor: colors.primary,
+                  borderTopLeftRadius: 3,
+                }}
+              />
+            )}
+            <Stack direction={"row"} gap={1} sx={{ marginLeft: 2 }}>
+              <LocalShippingOutlinedIcon sx={{ color: colors.primary }} />
+              <Typography
+                sx={{ fontWeight: "600", color: colors.primary }}
+                variant="body1"
+              >
+                Cash on delivery
+              </Typography>
+            </Stack>
+          </Stack>
+          <Stack
+            sx={{
+              height: "33.3%",
+              width: "100%",
+              borderRight: "1px solid #eaeaea",
+              backgroundColor: "#fafafa",
+            }}
+          ></Stack>
+        </Box>
+        {/* --------payment button---------- */}
+        <Box
+          sx={{
+            width: "60%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              height: "90%",
+              width: "90%",
+              margin: 2,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            {selectedMethod === "Online payment" ? (
+              <Stack>
+                <Typography
+                  sx={{
+                    color: colors.black25,
+                  }}
+                  variant="h6"
+                >
+                  Pay online
+                </Typography>
+                <Typography
+                  sx={{
+                    color: colors.black50,
+                  }}
+                >
+                  Use credit/debit card, net-banking, UPI, wallets to complete
+                  the payment.
+                </Typography>
+              </Stack>
+            ) : (
+              <Stack>
+                <Typography
+                  sx={{
+                    color: colors.black25,
+                  }}
+                  variant="h6"
+                >
+                  {"Pay on delivery (Cash/Card/UPI)"}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: colors.black50,
+                  }}
+                >
+                  Pay in cash or pay in person at the time of delivery with
+                  GPay/PayTM/PhonePe.
+                </Typography>
+              </Stack>
+            )}
+            <Button variant="outlined">pay</Button>
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 }
