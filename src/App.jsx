@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Bag from "./pages/bag/Bag";
+import NewAppBar from "./components/header/AppBar";
+import Footer from "./components/footer/Footer";
 
 export default function App() {
   return (
-    <div>
-      {/* dummy navbar */}
-      <div style={{ width: "100vw", height: "10vh" }}></div>
+    <Fragment>
+      <NewAppBar />
       <Routes>
-        <Route path="/bag" element={<Bag />}></Route>
+        <Route path="/" element={<Bag />} />
+        <Route path="/categories" element={<h1>shop</h1>} />
+        <Route path="/about-us" element={<h1>about-us</h1>} />
+        <Route
+          path="/terms-and-conditions"
+          element={<h1>terms-condition</h1>}
+        />
+        <Route path="/privacy-policy" element={<h1>privacy-policy</h1>} />
+        <Route path="/support" element={<h1>Support</h1>} />
+        <Route path="/change-language" element={<h1>change language</h1>} />
       </Routes>
-    </div>
+      <Footer />
+    </Fragment>
   );
 }

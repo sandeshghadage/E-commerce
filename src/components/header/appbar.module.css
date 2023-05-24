@@ -1,0 +1,15 @@
+.header {
+  height: 3rem;
+  background-color: #5dba60;
+}
+nav {
+  display: flex;
+  justify-content: flex-start;
+  width: 65%;
+  margin: 0 auto;
+  gap: 2rem;
+  padding-top: 1rem;
+  font-weight: bold;
+  color: white;
+  
+}
