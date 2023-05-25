@@ -1,9 +1,10 @@
 .wrapper{
     display: flex;
-
-    width: 30rem;
+    min-height: 8rem;
+    width: 35rem;
     padding: 10px;
     margin-bottom: 5px;
+    align-items: center;
 }
 .wrapper img{
     width: 7rem;
@@ -26,7 +27,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.wrapper button{
+.addBtn{
     max-height: 40px;
     background-color: white;
     border: 1px solid;
@@ -34,6 +35,31 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.wrapper button:hover{
+.addBtn:hover{
     background-color: rgb(212, 208, 208);
+}
+.btnDiv button{
+width: 1.5rem;
+font-size: x-large;
+font-weight: 10;
+border: none;
+background-color: white;
+cursor: pointer;
+}
+.btnDiv p{
+    width: 1.5rem;
+    text-align: center;
+    padding-top: 7px;
+    background-color: gainsboro;
+    min-height: 1.7rem;
+
+}
+.btnDiv{
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    max-height: 1.7rem;
+    overflow: hidden;
+
+
 }

@@ -15,6 +15,7 @@
 .leftSection{
     display: flex;
 gap: 10px;
+align-items: center;
 }
 .rightSection Button{
 text-transform: none;
