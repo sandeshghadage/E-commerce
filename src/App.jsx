@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Bag from "./pages/bag/Bag";
+import Home from "./pages/home/Home";
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       {/* dummy navbar */}
       <div style={{ width: "100vw", height: "10vh" }}></div>
       <Routes>
+        <Route path='/' element={<Home />}/>
         <Route path="/bag" element={<Bag />}></Route>
       </Routes>
     </div>
