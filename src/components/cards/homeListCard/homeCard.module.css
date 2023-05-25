@@ -1,0 +1,39 @@
+.wrapper{
+    display: flex;
+
+    width: 30rem;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.wrapper img{
+    width: 7rem;
+    max-height: 5rem;
+    margin-right: 10px;
+}
+.wrapper:hover{
+    background-color: whitesmoke;
+}
+.wrapper span{
+    font-size: 12px;
+}
+.wrapper h4{
+    display: inline;
+}
+.lastDiv{
+
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.wrapper button{
+    max-height: 40px;
+    background-color: white;
+    border: 1px solid;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.wrapper button:hover{
+    background-color: rgb(212, 208, 208);
+}
