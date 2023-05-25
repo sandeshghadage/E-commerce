@@ -8,7 +8,10 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import SearchIcon from '@mui/icons-material/Search';
 import { sideBarList } from './data';
 import HomeListCard from '../../components/cards/homeListCard/homeListCard';
+import { useNavigate } from 'react-router-dom';
+
 export default function Home() {
+    const navigate = useNavigate()
   return (
       <div>
           <div>
@@ -25,7 +28,7 @@ export default function Home() {
                   </div>
                   <div className={style.rightSection}>
                       <Button startIcon={<AppsIcon fontSize={'large'} /> } variant='outlineed'>Categories</Button>
-                      <Button startIcon={<WorkOutlineIcon fontSize={'large'}/> } variant='outlineed'>Bag</Button>
+                      <Button onClick={()=>navigate('/bag')} startIcon={<WorkOutlineIcon fontSize={'large'}/> } variant='outlineed'>Bag</Button>
                       <Button startIcon={<PersonOutlineIcon fontSize={'large'}/> } variant='outlineed'>Account</Button>
                   </div>
               </div>
