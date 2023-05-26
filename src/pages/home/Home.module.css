@@ -1,0 +1,77 @@
+.header{
+    display: flex;
+    position: fixed;
+    top: 3rem;
+    border-bottom: 1px solid darkgray;
+    padding-bottom: 10px;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.headerImg{
+    width: 4rem;
+}
+.leftSection{
+    display: flex;
+gap: 10px;
+align-items: center;
+}
+.rightSection Button{
+text-transform: none;
+
+}
+
+.middleSection input{
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: whitesmoke;
+    min-height: 2.5rem;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.middleSection input:focus{
+    background-color: white;
+
+}
+.searchBar{
+
+    border-radius: 10px;
+    min-height: 2.5rem;
+    width: 25rem;
+    display: flex;
+align-items: center;
+    background-color: whitesmoke;
+}
+.searchBar:active{
+    background-color: white;
+}
+.leftSideBar{
+    border-right: 1px solid darkgray;
+padding-top: 10px;
+    width: 20rem;
+    position: relative;
+    left: 7rem;
+top: 0.8rem;
+    /* background-image: linear-gradient(to right, white , darkgray); */
+}
+.sideBarItem{
+    cursor: pointer;
+    font-size: large;
+    padding: 5px;
+}
+.body{
+    display: flex;
+    position: relative;
+    top: 2rem;
+}
+.midSection{
+  
+    position: relative;
+    top: 1rem;
+    left: 7rem;
+    border-right: 1px solid darkgray;
+    min-height: 70vh;
+
+}
