@@ -1,6 +1,6 @@
 import { Box, Container, Typography, Stack, Button } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cart from "./localComponents/Cart";
 import { TbDiscount2 } from "react-icons/tb";
 import { colors } from "../../styles/styles";
@@ -8,10 +8,17 @@ import SelectAddress from "./localComponents/SelectAddress";
 import AdditionalInfo from "./localComponents/AdditionalInfo";
 import ChoosePayment from "./localComponents/ChoosePayment";
 import ButtonStandardFilled from "../../components/buttons/ButtonStandardFilled";
+import { getAllOrders } from "../../network/Network";
 
 export default function Bag() {
+  const [allOrders, setAllOrders] = useState([]);
   const [componentCount, setComponentCount] = useState(1);
   console.log("count =", componentCount);
+
+  useEffect(() => {
+    getAllOrders(setAllOrders);
+  }, []);
+
   return (
     <Container sx={{ display: "flex", gap: "1.5rem", mt: 5 }}>
       <Box
@@ -60,6 +67,8 @@ export default function Bag() {
             cursor: "pointer",
           }}
         >
+          {/* ------dummy data ------------- */}
+          {/* <div>{JSON.stringify(allOrders)}</div> */}
           <Stack
             direction={"row"}
             justifyContent={"space-between"}
