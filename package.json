@@ -16,6 +16,7 @@
     "@mui/material": "^5.13.1",
     "@mui/styles": "^5.13.1",
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "i": "^0.3.7",
     "nanoid": "^4.0.2",
     "npm": "^9.6.7",
