@@ -5,6 +5,8 @@ import LensOutlinedIcon from "@mui/icons-material/LensOutlined";
 import AdjustOutlinedIcon from "@mui/icons-material/AdjustOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedAddressIndex } from "../../../redux/OrderSlice";
 
 const addressData = [
   {
@@ -32,8 +34,12 @@ const addressData = [
 ];
 
 export default function SelectAddress() {
-  const [isSelected, setIsSelected] = useState(0);
+  // const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
+  const dispatch = useDispatch();
   const [demoAddress, setDemoAddress] = useState(addressData);
+  const selectedAddressIndex = useSelector(
+    (state) => state.orderData.selectedAddressIndex
+  );
 
   // function handleAddressSelect(addressIndex) {
   //   const tempAddress = [...demoAddress];
@@ -43,6 +49,10 @@ export default function SelectAddress() {
   //   setDemoAddress(tempAddress);
   // }
 
+  function handleAddressSelect(addressIndex) {
+    dispatch(setSelectedAddressIndex(addressIndex));
+  }
+
   return (
     <>
       <Typography variant="h6">Select a delivery address</Typography>
@@ -51,9 +61,9 @@ export default function SelectAddress() {
           <ChooseAddressCard
             name={item.name}
             mobile={item.mobile}
-            isSelected={isSelected}
+            isSelected={selectedAddressIndex}
             address={item.address}
-            onClick={() => setIsSelected(addressIndex)}
+            onClick={() => handleAddressSelect(addressIndex)}
             addressIndex={addressIndex}
           />
         ))}
@@ -90,8 +100,8 @@ function ChooseAddressCard({
   addressIndex,
 }) {
   const { flat, locality, city } = address;
-  console.log("isSelected", isSelected);
-  console.log("addressIndex", addressIndex);
+  // console.log("isSelected", isSelected);
+  // console.log("addressIndex", addressIndex);
   return (
     <Card
       onClick={onClick}

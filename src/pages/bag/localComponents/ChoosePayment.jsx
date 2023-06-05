@@ -4,15 +4,28 @@ import { colors } from "../../../styles/styles";
 import PaymentIcon from "@mui/icons-material/Payment";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import ButtonStandardFilled from "../../../components/buttons/ButtonStandardFilled";
+import { useNavigate } from "react-router-dom";
 
 export default function ChoosePayment() {
   const [selectedMethod, setSelectedMethod] = useState("Online payment");
+  const navigate = useNavigate();
 
   function handleSelectOnlinePaymentMethod() {
     setSelectedMethod("Online payment");
   }
   function handleSelectCashPaymentMethod() {
     setSelectedMethod("Cash on delivery");
+  }
+
+  function handleOnlinePayment() {
+    alert(
+      "online payment method is currently out of service, Kindly choose COD."
+    );
+  }
+  function handleCashPayment() {
+    alert("Order has been placed");
+    navigate("/");
+    // clear local storage after order
   }
 
   return (
@@ -178,12 +191,14 @@ export default function ChoosePayment() {
                 height={"3rem"}
                 width={"100%"}
                 value={"Pay 565"}
+                onClick={handleOnlinePayment}
               />
             ) : (
               <ButtonStandardFilled
                 height={"3rem"}
                 width={"100%"}
                 value={"Place Order"}
+                onClick={handleCashPayment}
               />
             )}
           </Box>

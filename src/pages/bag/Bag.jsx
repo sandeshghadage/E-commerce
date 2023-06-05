@@ -9,15 +9,53 @@ import AdditionalInfo from "./localComponents/AdditionalInfo";
 import ChoosePayment from "./localComponents/ChoosePayment";
 import ButtonStandardFilled from "../../components/buttons/ButtonStandardFilled";
 import { getAllOrders } from "../../network/Network";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCurrTotalSellingPrice,
+  setSelectedAddressIndex,
+} from "../../redux/OrderSlice";
 
 export default function Bag() {
   const [allOrders, setAllOrders] = useState([]);
   const [componentCount, setComponentCount] = useState(1);
-  console.log("count =", componentCount);
+  const cartStatus = useSelector((state) => state.orderData.cartData);
+  const [currTotalPrice, setCurrTotalPrice] = useState(0);
+  const currTotalSellingPrice = useSelector(
+    (state) => state.orderData.currTotalSellingPrice
+  );
+  const selectedAddressIndex = useSelector(
+    (state) => state.orderData.selectedAddressIndex
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    cartStatus.map((ele) => {
+      if (ele.count > 0) {
+        let sellingTotal = ele.count * ele.sellingPrice;
+        setCurrTotalSellingPrice(sellingTotal);
+        dispatch(setCurrTotalSellingPrice(sellingTotal));
+        let priceTotal = ele.count * ele.price;
+        setCurrTotalPrice(priceTotal);
+      }
+    });
+  }, [cartStatus]);
 
   useEffect(() => {
     getAllOrders(setAllOrders);
   }, []);
+
+  function handleContinue() {
+    if (componentCount === 2) {
+      localStorage.setItem(
+        "addressIndex",
+        JSON.stringify(selectedAddressIndex)
+      );
+    }
+    if (componentCount === 4) {
+    }
+
+    setComponentCount(componentCount + 1);
+  }
 
   return (
     <Container sx={{ display: "flex", gap: "1.5rem", mt: 5 }}>
@@ -115,7 +153,8 @@ export default function Bag() {
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Typography variant="body1">Item total</Typography>
               <Typography variant="body1">
-                <s style={{ color: colors.black50 }}>₹570 </s> ₹565
+                <s style={{ color: colors.black50 }}>₹{currTotalPrice} </s> ₹
+                {currTotalSellingPrice}
               </Typography>
             </Stack>
             <Stack direction={"row"} justifyContent={"space-between"}>
@@ -130,9 +169,7 @@ export default function Bag() {
             />
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Typography variant="body1">Grand total</Typography>
-              <Typography variant="body1">
-                <s style={{ color: colors.black50 }}>₹565 </s> ₹565
-              </Typography>
+              <Typography variant="body1"> ₹{currTotalSellingPrice}</Typography>
             </Stack>
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Typography variant="body1">Inclusive of all taxes</Typography>
@@ -158,7 +195,8 @@ export default function Bag() {
               }}
             >
               <Typography variant="body1">
-                ₹5 saved so far on this order
+                ₹{currTotalPrice - currTotalSellingPrice} saved so far on this
+                order
               </Typography>
             </Stack>
             {componentCount < 4 && (
@@ -166,7 +204,7 @@ export default function Bag() {
                 height={"3rem"}
                 width={"100%"}
                 value={"Continue"}
-                onClick={() => setComponentCount(componentCount + 1)}
+                onClick={handleContinue}
               />
             )}
           </Stack>

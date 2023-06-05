@@ -7,11 +7,13 @@ import {
   MenuItem,
   Popover,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { colors } from "../../styles/styles";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
+import { useDispatch } from "react-redux";
+import { updateItemQnty } from "../../redux/OrderSlice";
 
-export default function BagItemCard() {
+export default function BagItemCard(props) {
   return (
     <Card
       elevation={0}
@@ -32,9 +34,7 @@ export default function BagItemCard() {
         >
           <img
             style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "cover" }}
-            src={
-              "https://media.istockphoto.com/id/595754692/photo/fresh-green-mango-on-white-background.jpg?b=1&s=170667a&w=0&k=20&c=e7c4f19vHdKlBCdmOe-XV5SbX8Z71GnUj949ZK8VY-Q="
-            }
+            src={props.img}
           />
         </Card>
         <Stack
@@ -54,24 +54,31 @@ export default function BagItemCard() {
             }}
           >
             <Stack direction={"row"} justifyContent={"space-between"}>
-              <Typography color={colors.black30}>Raw Mango</Typography>
-              <Typography color={colors.black50}>REMOVE</Typography>
+              <Typography color={colors.black30}>{props.itemName}</Typography>
+              <Typography color={colors.black50} sx={{ cursor: "pointer" }}>
+                REMOVE
+              </Typography>
             </Stack>
             <span style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-              <Typography>₹180 </Typography>
-              <s style={{ color: colors.black50 }}>₹200 </s>
+              <Typography>₹{props.sellingPrice} </Typography>
+              <s style={{ color: colors.black50 }}>₹{props.price} </s>
 
               <Typography color={colors.secondary} sx={{ fontWeight: "500" }}>
                 {"(10% off)"}{" "}
               </Typography>
             </span>
             <small style={{ color: colors.secondaryGreen, fontWeight: "600" }}>
-              You saved ₹20{" "}
+              You saved ₹{props.price - props.sellingPrice}
             </small>
             {/* -----------drop for size and qty------------------ */}
             <Stack direction="row" gap={2}>
-              <DropDown name={"Size"} unit={"Kg"} btnWidth={"6rem"} />
-              <DropDown name={"Qty"} btnWidth={"4.5rem"} />
+              <DropDown name={"Size"} unit={"Kg"} btnWidth={"6rem"} count={1} />
+              <DropDown
+                name={"Qty"}
+                btnWidth={"4.5rem"}
+                count={props.count}
+                itemId={props.itemId}
+              />
             </Stack>
           </Box>
         </Stack>
@@ -80,11 +87,20 @@ export default function BagItemCard() {
   );
 }
 
-function DropDown({ name, unit, btnWidth }) {
+function DropDown({ name, unit, btnWidth, count, itemId }) {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState(1);
+  const [selectedOption, setSelectedOption] = useState(count);
 
-  const productArr = [1, 2, 3];
+  useEffect(() => {
+    const updateQtyData = {
+      itemId: itemId,
+      count: selectedOption,
+    };
+    dispatch(updateItemQnty(updateQtyData));
+  }, [selectedOption]);
+
+  const productArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

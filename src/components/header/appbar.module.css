@@ -9,7 +9,12 @@ nav {
   margin: 0 auto;
   gap: 2rem;
   padding-top: 1rem;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 15px;
   color: white;
-  
+}
+
+.link {
+  text-decoration: none;
+  color: white;
 }
