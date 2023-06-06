@@ -1,0 +1,30 @@
+.btnDiv {
+  border: 1px solid #073642;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 1.7rem;
+  min-width: 5rem;
+  overflow: hidden;
+  border-radius: 5px;
+  color: #073642;
+}
+
+.qtySection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.cartItemHome {
+  margin: 2rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.priceSection {
+  display: flex;
+  gap: 5px;
+}

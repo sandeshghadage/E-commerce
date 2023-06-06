@@ -75,3 +75,55 @@
 .sidebar__content {
   margin-right: 2rem;
 }
+
+.rightSideBar {
+  width: 33.33%;
+  /* background-color: grey; */
+  box-sizing: border-box;
+  padding: 2rem;
+}
+
+.CartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bagCount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+}
+
+.bag__container {
+  width: 14rem;
+}
+
+.cartCounter {
+  width: 2rem;
+  height: 1.5rem;
+  background-color: #073642;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.bagTotalBox {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.emptyCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+  gap: 1rem;
+}

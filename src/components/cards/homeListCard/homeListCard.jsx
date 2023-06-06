@@ -7,6 +7,7 @@ import {
   addItem,
   decreaseItemQnty,
   increaseItemQnty,
+  setCurrTotalSellingPrice,
 } from "../../../redux/OrderSlice";
 
 export default function HomeListCard() {
@@ -21,7 +22,8 @@ export default function HomeListCard() {
     let item = { ...temp[index] };
 
     dispatch(decreaseItemQnty(item));
-    console.log("cartStatus --->", cartStatus);
+    dispatch(setCurrTotalSellingPrice(""));
+    // console.log("cartStatus --->", cartStatus);
   }
   function handleIncrease(index) {
     let temp = [...cartStatus];
@@ -31,6 +33,7 @@ export default function HomeListCard() {
       alert("The seller has only 10 of these available");
     } else {
       dispatch(increaseItemQnty(item));
+      dispatch(setCurrTotalSellingPrice(""));
     }
   }
   function handleAddItem(item) {

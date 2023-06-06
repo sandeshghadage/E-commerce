@@ -11,7 +11,10 @@ import React, { useEffect, useState } from "react";
 import { colors } from "../../styles/styles";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { useDispatch } from "react-redux";
-import { updateItemQnty } from "../../redux/OrderSlice";
+import {
+  setCurrTotalSellingPrice,
+  updateItemQnty,
+} from "../../redux/OrderSlice";
 
 export default function BagItemCard(props) {
   return (
@@ -98,6 +101,7 @@ function DropDown({ name, unit, btnWidth, count, itemId }) {
       count: selectedOption,
     };
     dispatch(updateItemQnty(updateQtyData));
+    dispatch(setCurrTotalSellingPrice(""));
   }, [selectedOption]);
 
   const productArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];

@@ -8,14 +8,14 @@ import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedAddressIndex } from "../../../redux/OrderSlice";
 
-const addressData = [
+export const addressData = [
   {
     addressId: nanoid(),
     name: "Sandesh Dattajirao Ghadage",
     mobile: "+91-9807654323",
     isSelect: false,
     address: {
-      flat: "Mahadev Parvati niwas ,lane no 4,",
+      flat: "Mahadev Parvati niwas ,lane no 3,",
       locality: "Near Bank of Maharashtra",
       city: "Pune 411001",
     },

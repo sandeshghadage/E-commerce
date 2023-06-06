@@ -38,7 +38,6 @@ export const orderSlice = createSlice({
       });
     },
     updateItemQnty: (state, actions) => {
-      // let currItem = actions.payload;
       state.cartData.map((ele, i) => {
         if (ele.itemId === actions.payload.itemId) {
           const updatedItem = { ...ele };
@@ -49,7 +48,17 @@ export const orderSlice = createSlice({
       });
     },
     setCurrTotalSellingPrice: (state, actions) => {
-      state.currTotalSellingPrice = actions.payload;
+      let finalTotal = 0;
+      state.cartData.map((ele) => {
+        if (ele.count > 0) {
+          finalTotal += ele.count * ele.sellingPrice;
+        }
+      });
+      state.currTotalSellingPrice = finalTotal;
+      console.log(
+        "inside setCurrTotalSellingPrice",
+        state.currTotalSellingPrice
+      );
     },
     setSelectedAddressIndex: (state, actions) => {
       state.selectedAddressIndex = actions.payload;

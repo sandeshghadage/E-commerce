@@ -4,16 +4,13 @@ import React, { useState, useEffect } from "react";
 import Cart from "./localComponents/Cart";
 import { TbDiscount2 } from "react-icons/tb";
 import { colors } from "../../styles/styles";
-import SelectAddress from "./localComponents/SelectAddress";
+import SelectAddress, { addressData } from "./localComponents/SelectAddress";
 import AdditionalInfo from "./localComponents/AdditionalInfo";
 import ChoosePayment from "./localComponents/ChoosePayment";
 import ButtonStandardFilled from "../../components/buttons/ButtonStandardFilled";
 import { getAllOrders } from "../../network/Network";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setCurrTotalSellingPrice,
-  setSelectedAddressIndex,
-} from "../../redux/OrderSlice";
+import { setCurrTotalSellingPrice } from "../../redux/OrderSlice";
 
 export default function Bag() {
   const [allOrders, setAllOrders] = useState([]);
@@ -45,10 +42,19 @@ export default function Bag() {
   }, []);
 
   function handleContinue() {
+    if (componentCount === 1) {
+      const finalCart = [];
+      cartStatus.map((ele) => {
+        if (ele.count > 0) {
+          finalCart.push(ele);
+        }
+      });
+      localStorage.setItem("finalCart", JSON.stringify(finalCart));
+    }
     if (componentCount === 2) {
       localStorage.setItem(
-        "addressIndex",
-        JSON.stringify(selectedAddressIndex)
+        "orderAddress",
+        JSON.stringify(addressData[selectedAddressIndex])
       );
     }
     if (componentCount === 4) {

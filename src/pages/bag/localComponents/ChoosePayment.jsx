@@ -5,9 +5,15 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import ButtonStandardFilled from "../../../components/buttons/ButtonStandardFilled";
 import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
+import { useSelector } from "react-redux";
+import { addOrder } from "../../../network/Network";
 
 export default function ChoosePayment() {
   const [selectedMethod, setSelectedMethod] = useState("Online payment");
+  const currTotalSellingPrice = useSelector(
+    (state) => state.orderData.currTotalSellingPrice
+  );
   const navigate = useNavigate();
 
   function handleSelectOnlinePaymentMethod() {
@@ -23,6 +29,19 @@ export default function ChoosePayment() {
     );
   }
   function handleCashPayment() {
+    const cart = JSON.parse(localStorage.getItem("finalCart"));
+    console.log("cart", cart);
+    const orderObj = {
+      userId: "3423",
+      orderId: 3462,
+      cartItems: cart,
+      shippingAddress: localStorage.getItem("orderAddress"),
+      status: "pending",
+      totalPrice: currTotalSellingPrice,
+      createdAt: new Date().toLocaleString(),
+      paymentMethod: "COD",
+    };
+    addOrder(orderObj);
     alert("Order has been placed");
     navigate("/");
     // clear local storage after order
