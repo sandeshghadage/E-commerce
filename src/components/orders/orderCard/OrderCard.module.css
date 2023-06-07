@@ -1,0 +1,11 @@
+.cardContainer{
+  display: flex;
+  justify-content: space-around;
+  gap: 1; 
+  
+}
+
+.content{
+ margin-left: 3rem;
+ padding: 1rem;
+}
