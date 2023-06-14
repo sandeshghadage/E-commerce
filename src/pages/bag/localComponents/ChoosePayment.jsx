@@ -4,15 +4,54 @@ import { colors } from "../../../styles/styles";
 import PaymentIcon from "@mui/icons-material/Payment";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import ButtonStandardFilled from "../../../components/buttons/ButtonStandardFilled";
+import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { addOrder } from "../../../network/Network";
+import { addItem } from "../../../redux/OrderSlice";
+import { cardData } from "../../../components/cards/homeListCard/cardData";
 
 export default function ChoosePayment() {
   const [selectedMethod, setSelectedMethod] = useState("Online payment");
+  const currTotalSellingPrice = useSelector(
+    (state) => state.orderData.currTotalSellingPrice
+  );
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleSelectOnlinePaymentMethod() {
     setSelectedMethod("Online payment");
   }
   function handleSelectCashPaymentMethod() {
     setSelectedMethod("Cash on delivery");
+  }
+
+  function handleOnlinePayment() {
+    alert(
+      "online payment method is currently out of service, Kindly choose COD."
+    );
+  }
+  function handleCashPayment() {
+    const cart = JSON.parse(localStorage.getItem("finalCart"));
+    console.log("cart", cart);
+    const orderObj = {
+      userId: "3423",
+      orderId: 3462,
+      cartItems: cart,
+      shippingAddress: JSON.parse(localStorage.getItem("orderAddress")),
+      status: "pending",
+      totalPrice: currTotalSellingPrice,
+      createdAt: new Date().toLocaleString(),
+      paymentMethod: "COD",
+    };
+    addOrder(orderObj);
+    alert("Order has been placed");
+    localStorage.clear("finalCart");
+    localStorage.clear("orderAddress");
+    localStorage.clear("bag");
+    // console.log("bag cleared");
+    dispatch(addItem(cardData));
+    navigate("/");
   }
 
   return (
@@ -178,12 +217,14 @@ export default function ChoosePayment() {
                 height={"3rem"}
                 width={"100%"}
                 value={"Pay 565"}
+                onClick={handleOnlinePayment}
               />
             ) : (
               <ButtonStandardFilled
                 height={"3rem"}
                 width={"100%"}
                 value={"Place Order"}
+                onClick={handleCashPayment}
               />
             )}
           </Box>

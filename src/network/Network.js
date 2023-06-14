@@ -9,21 +9,22 @@ export function getAllOrders(setAllOrders) {
   });
 }
 
-export function addOrder(
-  user,
-  orderId,
-  products,
-  shippingAddress,
-  status,
-  totalPrice,
-  createdAt,
-  paymentMethod
-) {
+export function addOrder(orderObj) {
+  const {
+    user,
+    orderId,
+    cartItems,
+    shippingAddress,
+    status,
+    totalPrice,
+    createdAt,
+    paymentMethod,
+  } = orderObj;
   axios
     .post(`${baseUrl}/save`, {
       user,
       orderId,
-      products,
+      cartItems,
       shippingAddress,
       status,
       totalPrice,
@@ -31,8 +32,8 @@ export function addOrder(
       paymentMethod,
     })
     .then((data) => {
-      setText("");
-      getAllOrders(setAllOrders);
+      // setText("");
+      // getAllOrders(setAllOrders);
     });
 }
 
