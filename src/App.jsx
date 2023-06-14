@@ -4,6 +4,10 @@ import Bag from "./pages/bag/Bag";
 import NewAppBar from "./components/header/AppBar";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
+import Account from "./pages/account/Account.jsx";
+import SignIn from './components/form/signIn/SignIn.jsx';
+import FilterPopUp from './components/cards/FilterPopUp';
+
 
 
 export default function App() {
@@ -22,6 +26,9 @@ export default function App() {
         <Route path="/change-language" element={<h1>change language</h1>} />
         <Route path='/' element={<Home />}/>
         <Route path="/bag" element={<Bag />}></Route>
+        <Route path="/account" element={<Account />}></Route>
+        <Route path='/signIn' element={<SignIn/>} ></Route>
+        <Route path="/filterPopUp" element={<FilterPopUp/>}></Route>
       </Routes>
       <Footer />
     </Fragment>

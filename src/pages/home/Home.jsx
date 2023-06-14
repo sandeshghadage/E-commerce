@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from "react";
+
 import style from "./Home.module.css";
 import { headerImg } from "./data";
 import Button from "@mui/material/Button";

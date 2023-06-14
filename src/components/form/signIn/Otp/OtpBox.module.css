@@ -1,0 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.otpField{
+  width:2rem;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 3px;
+  background-color: red;
+}
