@@ -62,7 +62,7 @@
 }
 .midSection {
   overflow: scroll;
-  min-width: 33.33%;
+  width: 33.33vw;
   border-right: 1px solid #eaeaea;
   border-left: 1px solid #eaeaea;
   min-height: 70vh;

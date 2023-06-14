@@ -1,19 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { cardData } from "../components/cards/homeListCard/cardData";
-import { getLocalData } from "../utils/LocalStorage";
+import { getLocalData, setLocalData } from "../utils/LocalStorage";
 
 const localData = getLocalData();
+console.log("in state");
 
 export const orderSlice = createSlice({
   name: "orderSlice",
   initialState: {
-    cartData: [...cardData],
+    cartData: [...localData],
     currTotalSellingPrice: 0,
     selectedAddressIndex: 0,
+    cartItemCount: 0,
   },
   reducers: {
     addItem: (state, actions) => {
-      state.cartData.push(actions.payload);
+      console.log("payload", actions.payload);
+      state.cartData = actions.payload;
     },
     increaseItemQnty: (state, actions) => {
       let currItem = actions.payload;
@@ -25,6 +28,7 @@ export const orderSlice = createSlice({
           state.cartData[i] = updatedItem;
         }
       });
+      setLocalData(state.cartData);
     },
     decreaseItemQnty: (state, actions) => {
       let currItem = actions.payload;
@@ -36,6 +40,7 @@ export const orderSlice = createSlice({
           state.cartData[i] = updatedItem;
         }
       });
+      setLocalData(state.cartData);
     },
     updateItemQnty: (state, actions) => {
       state.cartData.map((ele, i) => {
@@ -46,6 +51,7 @@ export const orderSlice = createSlice({
           console.log("inside updateItemQnty state", updatedItem);
         }
       });
+      setLocalData(state.cartData);
     },
     setCurrTotalSellingPrice: (state, actions) => {
       let finalTotal = 0;
@@ -55,13 +61,17 @@ export const orderSlice = createSlice({
         }
       });
       state.currTotalSellingPrice = finalTotal;
-      console.log(
-        "inside setCurrTotalSellingPrice",
-        state.currTotalSellingPrice
-      );
+      setLocalData(state.cartData);
     },
     setSelectedAddressIndex: (state, actions) => {
       state.selectedAddressIndex = actions.payload;
+    },
+    setCartItemCount: (state, actions) => {
+      state.cartData.map((ele) => {
+        if (ele.count > 0) {
+          state.cartItemCount = actions.payload;
+        }
+      });
     },
   },
 });
@@ -73,5 +83,6 @@ export const {
   updateItemQnty,
   setCurrTotalSellingPrice,
   setSelectedAddressIndex,
+  setCartItemCount,
 } = orderSlice.actions;
 export default orderSlice.reducer;

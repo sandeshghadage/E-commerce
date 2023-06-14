@@ -15,18 +15,41 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   decreaseItemQnty,
   increaseItemQnty,
+  setCartItemCount,
   setCurrTotalSellingPrice,
 } from "../../redux/OrderSlice";
+import { cardData } from "../../components/cards/homeListCard/cardData";
+import { setLocalData } from "../../utils/LocalStorage";
 
 export default function Home() {
   const cartStatus = useSelector((state) => state.orderData.cartData);
+
+  const cartItemCount = useSelector((state) => state.orderData.cartItemCount);
   const currTotalSellingPrice = useSelector(
     (state) => state.orderData.currTotalSellingPrice
   );
   const [currTotalPrice, setCurrTotalPrice] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [cartItemCount, setCartItemCount] = useState();
+  // const [cartItemCount, setCartItemCount] = useState();
+
+  useEffect(() => {
+    // window.location.reload(true);
+    console.log("on home page");
+    setLocalData(cardData);
+  }, []);
+
+  useEffect(() => {
+    let counter = 0;
+    cartStatus.map((ele) => {
+      if (ele.count > 0) {
+        // setCartItemCount(cartItemCount + 1);
+        counter++;
+        //problem in this function when getting itemcount in cart
+      }
+    });
+    dispatch(setCartItemCount(counter));
+  }, [cartStatus]);
 
   useEffect(() => {
     cartStatus.map((ele) => {
@@ -131,7 +154,7 @@ export default function Home() {
               <div className={style.CartHeader}>
                 <div className={style.bagCount}>
                   <div>Bag</div>
-                  <div className={style.cartCounter}>2</div>
+                  <div className={style.cartCounter}>{cartItemCount}</div>
                 </div>
                 <div>clear bag</div>
               </div>

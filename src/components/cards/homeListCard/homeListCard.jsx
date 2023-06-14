@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cardData } from "./cardData";
 import styles from "./homeCard.module.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,7 +15,11 @@ export default function HomeListCard() {
   const cartStatus = useSelector((state) => state.orderData.cartData);
   const dispatch = useDispatch();
 
-  console.log("cartStatus ---->", cartStatus);
+  useEffect(() => {
+    setLocalData(cardData);
+  }, []);
+
+  // console.log("cartStatus ---->", cartStatus);
 
   function handleDecrease(index) {
     let temp = [...cartStatus];
@@ -42,33 +46,35 @@ export default function HomeListCard() {
   }
   return (
     <div className={styles.mainContainer}>
-      {cartStatus.map((ele, i) => (
-        <div className={styles.wrapper}>
-          <img src={ele.img} alt="" />
-          <div>
-            <h4>{ele.itemName}</h4>
-            <br />
-            <span>per kg</span>
-            <div className={styles.lastDiv}>
-              <h4>{ele.price}</h4>
-              {ele.count >= 1 ? (
-                <div className={styles.btnDiv}>
-                  <button onClick={() => handleDecrease(i)}>-</button>
-                  <p>{ele.count}</p>
-                  <button onClick={() => handleIncrease(i)}>+</button>
+      {cartStatus.length > 0
+        ? cartStatus.map((ele, i) => (
+            <div className={styles.wrapper}>
+              <img src={ele.img} alt="" />
+              <div>
+                <h4>{ele.itemName}</h4>
+                <br />
+                <span>per kg</span>
+                <div className={styles.lastDiv}>
+                  <h4>{ele.price}</h4>
+                  {ele.count >= 1 ? (
+                    <div className={styles.btnDiv}>
+                      <button onClick={() => handleDecrease(i)}>-</button>
+                      <p>{ele.count}</p>
+                      <button onClick={() => handleIncrease(i)}>+</button>
+                    </div>
+                  ) : (
+                    <button
+                      className={styles.addBtn}
+                      onClick={() => handleAddItem(ele)}
+                    >
+                      ADD +
+                    </button>
+                  )}
                 </div>
-              ) : (
-                <button
-                  className={styles.addBtn}
-                  onClick={() => handleAddItem(ele)}
-                >
-                  ADD +
-                </button>
-              )}
+              </div>
             </div>
-          </div>
-        </div>
-      ))}
+          ))
+        : "Loading..."}
     </div>
   );
 }

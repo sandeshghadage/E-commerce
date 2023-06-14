@@ -16,7 +16,16 @@ import {
   updateItemQnty,
 } from "../../redux/OrderSlice";
 
-export default function BagItemCard(props) {
+export default function BagItemCard({
+  count,
+  itemId,
+  img,
+  itemName,
+  sellingPrice,
+  price,
+  handleRemoveItem,
+}) {
+  // const { count, itemId, img, itemName, sellingPrice, price } = props;
   return (
     <Card
       elevation={0}
@@ -37,7 +46,7 @@ export default function BagItemCard(props) {
         >
           <img
             style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "cover" }}
-            src={props.img}
+            src={img}
           />
         </Card>
         <Stack
@@ -57,21 +66,25 @@ export default function BagItemCard(props) {
             }}
           >
             <Stack direction={"row"} justifyContent={"space-between"}>
-              <Typography color={colors.black30}>{props.itemName}</Typography>
-              <Typography color={colors.black50} sx={{ cursor: "pointer" }}>
+              <Typography color={colors.black30}>{itemName}</Typography>
+              <Typography
+                onClick={handleRemoveItem}
+                color={colors.black50}
+                sx={{ cursor: "pointer" }}
+              >
                 REMOVE
               </Typography>
             </Stack>
             <span style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-              <Typography>₹{props.sellingPrice} </Typography>
-              <s style={{ color: colors.black50 }}>₹{props.price} </s>
+              <Typography>₹{sellingPrice} </Typography>
+              <s style={{ color: colors.black50 }}>₹{price} </s>
 
               <Typography color={colors.secondary} sx={{ fontWeight: "500" }}>
                 {"(10% off)"}{" "}
               </Typography>
             </span>
             <small style={{ color: colors.secondaryGreen, fontWeight: "600" }}>
-              You saved ₹{props.price - props.sellingPrice}
+              You saved ₹{price - sellingPrice}
             </small>
             {/* -----------drop for size and qty------------------ */}
             <Stack direction="row" gap={2}>
@@ -79,8 +92,8 @@ export default function BagItemCard(props) {
               <DropDown
                 name={"Qty"}
                 btnWidth={"4.5rem"}
-                count={props.count}
-                itemId={props.itemId}
+                count={count}
+                itemId={itemId}
               />
             </Stack>
           </Box>

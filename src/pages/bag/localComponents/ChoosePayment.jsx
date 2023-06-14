@@ -6,8 +6,10 @@ import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined
 import ButtonStandardFilled from "../../../components/buttons/ButtonStandardFilled";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addOrder } from "../../../network/Network";
+import { addItem } from "../../../redux/OrderSlice";
+import { cardData } from "../../../components/cards/homeListCard/cardData";
 
 export default function ChoosePayment() {
   const [selectedMethod, setSelectedMethod] = useState("Online payment");
@@ -15,6 +17,7 @@ export default function ChoosePayment() {
     (state) => state.orderData.currTotalSellingPrice
   );
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleSelectOnlinePaymentMethod() {
     setSelectedMethod("Online payment");
@@ -35,7 +38,7 @@ export default function ChoosePayment() {
       userId: "3423",
       orderId: 3462,
       cartItems: cart,
-      shippingAddress: localStorage.getItem("orderAddress"),
+      shippingAddress: JSON.parse(localStorage.getItem("orderAddress")),
       status: "pending",
       totalPrice: currTotalSellingPrice,
       createdAt: new Date().toLocaleString(),
@@ -43,8 +46,12 @@ export default function ChoosePayment() {
     };
     addOrder(orderObj);
     alert("Order has been placed");
+    localStorage.clear("finalCart");
+    localStorage.clear("orderAddress");
+    localStorage.clear("bag");
+    // console.log("bag cleared");
+    dispatch(addItem(cardData));
     navigate("/");
-    // clear local storage after order
   }
 
   return (
