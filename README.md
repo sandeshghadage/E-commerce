@@ -9,8 +9,6 @@ This repository contains a Fruit and Veggies E-commerce Website built with React
 - [Environment Variables](#environment-variables)
 - [Database Setup](#database-setup)
 - [Running the Application](#running-the-application)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 - **User Authentication:** Users can sign up, log in, and log out using their email and password. Firebase Authentication is used for user management.
